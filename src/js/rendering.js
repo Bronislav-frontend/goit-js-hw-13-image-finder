@@ -25,19 +25,15 @@ function clearImagesGallery() {
 
 const onEntry = entries => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            console.log('ало')
-            imageApiService.fetchImages().then(images => {
+        if (entry.isIntersecting && imageApiService.query !== '') {
+            imageApiService.fetchImages()
+                .then(images => {
                 appendImagesMarkup(images);
                 imageApiService.incrementPage();
           }) 
         }
     })
 }
-const options = {}
-const observer = new IntersectionObserver(onEntry, options);
-const items = document.querySelectorAll('.photo-item');
-const lastItem = items[items.length - 1]
-console.log (lastItem)
+const observer = new IntersectionObserver(onEntry);
+observer.observe(refs.sentinel)
 
-observer.observe(lastItem)

@@ -45,3 +45,8 @@ img {
 .button {
   background-color: rgb(228, 166, 166);
 }
+
+.sentinel {
+  width: 100px;
+  height: 100px;
+}
